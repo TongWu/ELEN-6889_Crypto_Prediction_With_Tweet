@@ -7,7 +7,7 @@ This repository is about the final project of ELEN 6889 in 23 spring.
 
 The project aims to provide users with real-time cryptocurrency prices and its predicted price trend with related tweets and possible news on the same page. This will help users to make informed decisions quickly regarding the investment. 
 
-###Is there a set of references that motivate this?
+### Is there a set of references that motivate this?
 
 The motivation comes from the growing interest in cryptocurrencies investment market and the greater impact of social media sentiment on market trends. Twitter as one of the largest social media and news distributers in the world is the best object to analysis. 
 
