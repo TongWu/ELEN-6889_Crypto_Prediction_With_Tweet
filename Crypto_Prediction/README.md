@@ -1,4 +1,5 @@
 # Cryptocurrency Prediction
+Tong Wu
 
 ## TODO
 - Determine the main model to predict the price
