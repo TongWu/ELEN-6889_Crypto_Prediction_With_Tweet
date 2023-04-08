@@ -11,7 +11,7 @@ Tong Wu
 
 TBD
 
-## Fusion of several ML algorithm
+## Fusion of ML algorithms
 
 TBD
 
