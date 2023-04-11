@@ -12,3 +12,7 @@
     - implement in Spark
     - tbd
 
+### references
+    1. https://towardsdatascience.com/step-by-step-twitter-sentiment-analysis-in-python-d6f650ade58d
+    2. https://blog.quantinsti.com/download-cryptocurrency-data-python-cryptocompare-api/
+
