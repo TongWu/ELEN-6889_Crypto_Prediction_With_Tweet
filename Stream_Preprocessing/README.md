@@ -8,7 +8,7 @@
     - implement in Spark
     - tbd
 
-### part 3: Stream optimization
+### part 3: stream optimization
     - implement in Spark
     - tbd
 
