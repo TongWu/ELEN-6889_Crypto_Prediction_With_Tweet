@@ -1,5 +1,4 @@
-# ELEN-6889 Crypto Prediction With Tweet
-This repository is about the final project of ELEN 6889 in 23 spring.
+# Project Proposal
 
 ## Techniques/Application
 
