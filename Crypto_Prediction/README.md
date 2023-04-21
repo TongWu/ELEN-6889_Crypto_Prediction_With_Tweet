@@ -51,7 +51,7 @@ Wasserstein Generative Adversarial Network with Gradient Penalty (WGAN-GP) is an
 
 For this algorithm, there are few research papers showed that it has higher accuracy than LSTM and basic GAN with all combined with the sentimental analysis data [1]. However, this algorithm is a novel algorithm which is first stated at 2017. Hence, I can found less tutorial or model about this algorithm. I will try to implement a model if there is enough time.
 
-[[1\]]: https://doi.org/10.3844/jcssp.2021.188.196	"Lin, H., Chen, C., Huang, G., &amp; Jafari, A. (2021). Stock price prediction using Generative Adversarial Networks. Journal of Computer Science, 17(3), 188–196"
+[1]: https://doi.org/10.3844/jcssp.2021.188.196	"Lin, H., Chen, C., Huang, G., &amp; Jafari, A. (2021). Stock price prediction using Generative Adversarial Networks. Journal of Computer Science, 17(3), 188–196"
 
 ## Implementation
 
