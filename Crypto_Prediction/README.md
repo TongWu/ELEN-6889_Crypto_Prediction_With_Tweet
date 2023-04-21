@@ -15,11 +15,11 @@ Tong Wu
 
 - [x] Fetch BTC data
 
-- [ ] Fetch tweet data
+- [ ] Fetch tweet data (pending)
 
-- [ ] Data cleaning (pending)
+- [x] Data cleaning
 
-- [ ] Model implementing
+- [x] Model implementing
 
 - [ ] Fine tuning
 
@@ -51,7 +51,7 @@ The LSTM model is seen as an improved version of the RNN model. RNN cannot cope 
 
 ## Implementation
 
-TBD
+TBD (pending)
 
 ## Fusion of ML algorithms
 

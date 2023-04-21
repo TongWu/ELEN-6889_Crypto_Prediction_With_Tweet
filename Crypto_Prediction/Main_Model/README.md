@@ -10,3 +10,6 @@
   2. `[date, price, high, low, change]`
 - The first part of data is mainly used to predict the trend of price. The second part of data is used to provide some necessary support for fine tuning.
 
+## Main Model Implementation
+
+pending
