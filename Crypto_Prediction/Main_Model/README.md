@@ -1,17 +1,17 @@
 # Main Model
 
-## Data Cleaning
+### First Model: LSTM
 
-- ~~At current phase, fetch the static data from cloud drive.~~
-  - ~~The static dataset contains BTC close and open price, the peak and the lowest price, the trading volume and the percentage of price change for each day from 2022-01-01 to 2023-04-10~~
-  - ~~465 rows with 7 attributes `[date, price, open, high, low, vol, change]`~~
-- ~~Split the data into two parts:~~
-  1. ~~`[date, price, open]`~~
-  2. ~~`[date, price, high, low, change]`~~
-- ~~The first part of data is mainly used to predict the trend of price. The second part of data is used to provide some necessary support for fine tuning.~~
+The LSTM model is seen as an improved version of the RNN model. RNN cannot cope with two far apart attributes because of its single register, and this problem is called long-term dependence. LSTM, as its name suggests, has long and short term memory capacity and can solve this problem.
 
-Reconstructed, document pending
+![image-20230410235659766](https://images.wu.engineer/images/2023/04/10/image-20230410235659766.png)
 
-## Main Model Implementation
 
-Finished, document pending
+
+### Second Model: WGAN-GP
+
+Wasserstein Generative Adversarial Network with Gradient Penalty (WGAN-GP) is an advanced variant of Generative Adversarial Networks (GANs), a class of machine learning models that consist of a generator and a discriminator, designed to generate realistic data samples. WGAN-GP specifically improves upon the original GAN framework by addressing some of its limitations, such as mode collapse and training instability.
+
+For this algorithm, there are few [research papers] showed that it has higher accuracy than LSTM and basic GAN with all combined with the sentimental analysis data. However, this algorithm is a novel algorithm which is first stated at 2017. Hence, I can found less tutorial or model about this algorithm. I will try to implement a model if there is enough time.
+
+[research papers]: https://doi.org/10.3844/jcssp.2021.188.196	"Lin, H., Chen, C., Huang, G., &amp; Jafari, A. (2021). Stock price prediction using Generative Adversarial Networks. Journal of Computer Science, 17(3), 188–196"
