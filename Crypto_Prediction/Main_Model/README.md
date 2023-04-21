@@ -12,4 +12,4 @@
 
 ## Main Model Implementation
 
-pending
+Finished, document pending
