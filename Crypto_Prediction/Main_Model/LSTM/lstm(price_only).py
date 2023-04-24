@@ -11,11 +11,13 @@ import math
 import yfinance as yf
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler 
+from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+import datetime
 
 from google.colab import drive
 drive.mount('/content/drive')
@@ -24,6 +26,12 @@ drive.mount('/content/drive')
 BTC_raw = yf.download('BTC-USD', start='2021-01-01', end='2023-04-19')
 # BTC_raw.columns = ['date', 'open_price', 'high', 'low', 'close_price', 'adj close', 'volume']
 BTC_raw.head()
+
+"""
+for i in range(20):
+  BTC_raw = BTC_raw.append(pd.Series([BTC_raw.iloc[-1][0] + pd.DateOffset(days=1),None,None,None,None,None,None], index=['Date','Open','High','Low','Close','Adj Close','Volume']),ignore_index=True)
+BTC_raw
+"""
 
 # Split the raw data into parts
 BTC_basic = BTC_raw[['Adj Close', 'Open']]
@@ -43,7 +51,8 @@ y_train = []
 close_price = BTC_quant['Adj Close']
 training_data_len = math.ceil(len(close_price.values)* 0.8)
 # Normalised data
-scaled_data = MinMaxScaler(feature_range=(0,1)).fit_transform(close_price.values.reshape(-1,1))
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled_data = scaler.fit_transform(close_price.values.reshape(-1,1))
 training_data = scaled_data[0: training_data_len, :]
 
 ### Create a price window with 30 days ###
@@ -65,6 +74,8 @@ for i in range(window_size, len(test_data)):
 
 x_test = np.array(x_test)
 x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+
+y_test
 
 ### Set up LSTM architecture ###
 model = keras.Sequential()
@@ -93,6 +104,81 @@ plt.xlabel('Date')
 plt.ylabel('Close Price USD ($)')
 plt.plot(train)
 plt.plot(validation[['Adj Close', 'Predictions']])
-plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
+plt.legend(['Train', 'Original', 'Predictions'], loc='lower right')
 plt.show()
 
+## Predict tommorrow price ##
+stock_quote = yf.download('BTC-USD', start='2021-01-01', end='2023-04-19')
+
+new_df=stock_quote.filter(['Close'])
+#Get last 60 days values and convert into array
+last_60_days=new_df[-60:].values
+
+#Scale the data to be values between 0
+last_60_days_scaled=scaler.transform(last_60_days)
+
+#Create an empty list
+X_test=[]
+#Appemd the past 60days
+X_test.append(last_60_days_scaled)
+
+#Conver the X_test data into numpy array
+X_test = np.array(X_test)
+
+#Reshape the data
+X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1],1))
+#Get predicted scaled price
+pred_price = model.predict(X_test)
+#undo the scaling
+pred_price=scaler.inverse_transform(pred_price)
+print(f'Price of BTC-USD tomorrow:{pred_price}')
+
+def predict_and_plot_btc_prices(num_days_to_predict):
+  today = datetime.date.today()
+  stock_quote = yf.download('BTC-USD', start=today-datetime.timedelta(days=100), end=today)
+  new_df=stock_quote.filter(['Close'])
+  last_60_days = new_df[-60:].values
+  last_60_days_scaled = scaler.transform(last_60_days)
+  predictions = []
+  predicted_dates = []
+  for _ in range(num_days_to_predict):
+    last_date = new_df.index[-1]
+    # Create an empty list for the current iteration
+    X_test = []
+
+    # Append the past 60 days of scaled data
+    X_test.append(last_60_days_scaled)
+
+    # Convert the X_test data into a numpy array
+    X_test = np.array(X_test)
+
+    # Reshape the data
+    X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
+
+    # Get the predicted scaled price
+    pred_price = model.predict(X_test)
+
+    # Undo the scaling
+    pred_price_unscaled = scaler.inverse_transform(pred_price)
+
+    # Add the unscaled predicted price to the list of predictions
+    predictions.append(pred_price_unscaled[0][0])
+
+    # Update last_60_days_scaled by removing the first day and adding the predicted price
+    last_60_days_scaled = np.concatenate((last_60_days_scaled[1:], pred_price), axis=0)
+
+    # Add the predicted date to the list of predicted_dates
+    predicted_date = last_date + datetime.timedelta(days=_+1)
+    predicted_dates.append(predicted_date)
+  print(f"Price of BTC-USD for the next 3 trading days: {predictions}")
+  fig, ax = plt.subplots()
+  ax.plot(predicted_dates, predictions, marker='o', label='Predicted Prices')
+  ax.set(xlabel='Date', ylabel='BTC-USD Price', title='Predicted BTC-USD Prices for the Next 3 Trading Days')
+  ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+  ax.set_xlim(predicted_dates[0], predicted_dates[0] + datetime.timedelta(days=num_days_to_predict))
+  plt.xticks(rotation=45)
+  plt.legend()
+  plt.grid()
+  plt.show()
+
+predict_and_plot_btc_prices(30)
