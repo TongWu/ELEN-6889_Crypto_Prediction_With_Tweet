@@ -55,16 +55,21 @@ For this algorithm, there are few [research papers] showed that it has higher ac
 
 ## Implementation
 
-TBD (pending)
+Completed (pending)
 
 ## Fusion of ML algorithms
 
-TBD
+TBD, may discard due to lack of time.
 
 ## Combine With Sentimental Analysis Data
 
-TBD
+TBD, implemented with sample data, awaiting the sentimental analysis
 
 ## Optimization
 
 TBD
+
+## Interfacing with front-end
+
+TBD
+Output format: images for tomorrow, 3 days after, 5 days after prediction. Predicted price array for each day.
