@@ -68,3 +68,8 @@ TBD, implemented with sample data, awaiting the sentimental analysis
 ## Optimization
 
 TBD
+
+## Interfacing with front-end
+
+TBD
+Output format: images for tomorrow, 3 days after, 5 days after prediction. Predicted price array for each day.
