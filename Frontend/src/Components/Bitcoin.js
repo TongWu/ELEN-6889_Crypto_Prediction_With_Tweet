@@ -1,8 +1,8 @@
 import {Button, Image} from 'react-bootstrap';
 import smile from './smile.png'
-import week from './week-image.jpeg';
-import month from './month-image.jpeg';
-import year from './year-image.jpeg';
+import day1 from './Prediction_1days.png';
+import day3 from './Prediction_3days.png';
+import day5 from './Prediction_5days.png';
 
 export const BitcoinPage = () => {
 
@@ -13,17 +13,18 @@ export const BitcoinPage = () => {
 
     function weekPrediction() {
         var image = document.getElementById('predictionImage');
-        image.src = week;
+        image.src = day1;
     };
+    
 
     function monthPrediction() {
         var image = document.getElementById('predictionImage');
-        image.src = month;
+        image.src = day3;
     };
 
     function yearPrediction() {
         var image = document.getElementById('predictionImage');
-        image.src = year;
+        image.src = day5;
     };
 
 
