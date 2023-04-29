@@ -25,17 +25,20 @@ Tong Wu
 
 #### Fusion
 
-Discover fusion between different machine learning algorithms
+Discover fusion between different machine learning algorithms.
+
 Fusion is completed, by adding dropout layers and GRU layers into LSTM model, in order to avoid overfitting and improve the accuracy.
 
 #### Combine
 
-Predict the price using ML model combined with the sentimental analysis data of tweet
+Predict the price using ML model combined with the sentimental analysis data of tweet.
+
 Combine is almost completed. The function adding sentimental analysis data into the model has been writtem but not test yet.
 
 #### Optimization
 
-Optimism the running time and accuracy
+Optimism the running time and accuracy.
+
 Optimisation is ongoing, the parameters are tuned.
 
 ## Main model
