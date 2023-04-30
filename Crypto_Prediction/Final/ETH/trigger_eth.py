@@ -46,7 +46,7 @@ def predict(num_days_to_predict, sentimental_data_file_path):
     # Load model, prediction csv
     model_path = './ETH_model.h5'
     model = load_model(model_path)
-    prediction_path = './prediction.csv'
+    prediction_path = './BTC_prediction.csv'
     prediction = pd.read_csv(prediction_path)
     error = prediction.iloc[-1, 0] - prediction.iloc[-1, 1]
     ### Fetch ETH-USD data BEGIN ###
