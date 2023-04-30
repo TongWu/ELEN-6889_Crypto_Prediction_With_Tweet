@@ -80,8 +80,12 @@ def predict_and_plot_btc_prices(num_days_to_predict, sentimental_data_file_path)
         last_30_days_scaled_price = np.concatenate((last_30_days_scaled_price[1:], pred_price), axis=0)
         predicted_date = last_date + datetime.timedelta(days=_+1)
         predicted_dates.append(predicted_date)
-
-    print(f"Price of BTC-USD for the next {num_days_to_predict} trading days: {predictions}")
+    # print(f"Price of BTC-USD for the next {num_days_to_predict} trading days: {predictions}")
+    output_text = f"Price of BTC-USD for the next {num_days_to_predict} trading days: {predictions}"
+    print(output_text)
+    file_name = f"./public/BTC/Prediction_{num_days_to_predict}days.txt"
+    with open(file_name, 'w') as file:
+      file.write(output_text)
     fig, ax = plt.subplots()
     ax.plot(predicted_dates, predictions, marker='o', label='Predicted Prices')
     ax.set(xlabel='Date', ylabel='BTC-USD Price', title=f'Predicted BTC-USD Prices for the Next {num_days_to_predict} Trading Days')
@@ -90,7 +94,7 @@ def predict_and_plot_btc_prices(num_days_to_predict, sentimental_data_file_path)
     plt.xticks(rotation=45)
     plt.legend()
     plt.grid()
-    plt.savefig(f'./Prediction_{num_days_to_predict}days', dpi=300, bbox_inches='tight')
+    plt.savefig(f'/src/Components/BTC/Prediction_{num_days_to_predict}days', dpi=300, bbox_inches='tight')
     plt.show()
 
 sentimental_data_file_path = './vader.csv'
